@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title th:text="#{insertAddress.title}"></title>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<link href="../static/findProduct.css" th:href="@{/findProduct.css}" rel="stylesheet" />
+</head>
+<body class="text-center login">
+<div class="container register" >
+	<h1 class="centralTitle" th:text="#{insertAddress.title2}"></h1>
+		<div class="row" >
+			<div class="col-md-8">
+			<form action="#" th:object="${addressForm}" th:action="@{/singin/address}" method="POST">
+					<div class="form-group">
+					<div class="form-group">
+						<label th:text="#{insertAddress.addressLine}"></label>
+						<textarea rows="5" cols="30" class="form-control" th:id="addressLine" th:name="addressLine" th:value="${addressForm.addressLine}" ></textarea>
+						<div th:if="${#fields.hasErrors('addressLine')}" >
+						<font color="red" th:text="#{insertAddress.errorAddressLine22}"></font>
+						</div>
+					</div>
+					<div class="form-group">
+						<label th:text="#{insertAddress.addressLine2}"></label>
+						<textarea rows="5" cols="30" class="form-control" th:id="addressLine2" th:name="addressLine2" th:value="${addressForm.addressLine2}" ></textarea>
+						<div th:if="${#fields.hasErrors('addressLine2')}" >
+						<font color="red" th:text="#{insertAddress.errorAddressLine22}"></font>
+						</div>
+					</div>
+					<div class="form-group">
+						<label th:text="#{insertAddress.city}"></label>
+						<input type="text" th:id="city" th:name="city" class="form-control" th:value="${addressForm.city}">
+						<div th:if="${#fields.hasErrors('city')}" >
+						<font color="red" th:text="#{insertAddress.errorCity}"></font>
+						</div>
+					</div>
+					<div class="form-group">
+						<label th:text="#{insertAddress.state}"></label>
+						<input type="text"  th:name="state" th:id="state" class="form-control" th:value="${addressForm.state}">
+						<div th:if="${#fields.hasErrors('state')}" >
+						<font color="red" th:text="#{insertAddress.errorState}"></font>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label th:text="#{insertAddress.postalCode}"></label>
+						<input type="text" th:name="postalCode" th:id="postalCode" class="form-control" th:value="${addressForm.postalCode}">
+						<div th:if="${#fields.hasErrors('postalCode')}" >
+						<font color="red" th:text="#{insertAddress.errorPostalCode}"></font>
+						</div>
+					</div>
+					
+					
+					<input type="submit" th:value="#{insertAddress.buttonNext}" onChange="insertContactInformation" class="btn btn-primary">
+					</div>
+			</form>
+					<form th:action="@{/singin/client}" method="GET">
+    					<input type="submit" th:value="#{insertAddress.buttonBack}" class="btn btn-danger"/>
+					</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

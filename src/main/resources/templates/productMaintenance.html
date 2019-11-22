@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title th:text="#{productoMaintenance.title}"></title>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+
+<body>
+<nav th:replace="adminMenuNav :: header">
+
+</nav>
+	<div class="container">
+		
+		
+		<div class="form-group" >
+			<h1 th:text="#{productMaintenance.title}"></h1>
+		</div>
+		
+		<form action="#" th:action="@{/home/maintenance}"	method="post">
+				<label th:text="#{productMaintenance.insertProductName}"></label>
+				 <input type="text" name="productName" /> <br>  <br>
+				<input type="submit" th:text="#{productMaintenance.buttonSearch}" />  
+		</form><br>
+		
+		 <!--  <img src="data:image/jpeg;base64,${blob}"/>
+			<img src="image/jpeg;base64,'.base64_encode(${blob}).'"/>
+			<img style="max-height: 100px" src="data:image/jpg;base64,<?php echo base64_encode($blob)>"/> -->
+		
+		
+		
+		
+		<span th:if="${products.isEmpty()}" th:text="#{productMaintenance.alert}"></span>
+		<span th:unless="${products.isEmpty()}">
+		<table class="table table-striped">
+			<tr>
+				<th th:text="#{productMaintenance.identification}"></th>
+				<th th:text="#{productMaintenance.name}"></th>
+				<th th:text="#{productMaintenance.description}"></th>
+				<th th:text="#{productMaintenance.price}"></th>
+				<th th:text="#{productMaintenance.stockUnits}"> </th>
+				<th th:text="#{productMaintenance.category}"></th>
+				<th th:text="#{productMaintenance.image}"></th>
+				<th th:text="#{productMaintenance.action}"></th>
+			</tr>
+			
+			
+			
+			<tr th:each="p : ${products}">
+				<td><span th:text="${p.productId}"></span></td>
+				<td><span th:text="${p.productName}"></span></td>
+				<td><span th:text="${p.description}"></span></td>
+				<td><span th:text="${p.price}"></span></td>
+				<td><span th:text="${p.stockUnits}"></span></td>
+				<td><span th:text="${p.category.categoryName}"></span></td>
+				
+				<span th:if="${p.images.length==0}"><td th:text="#{productMaintenance.noImages}"></td></span>
+					<span th:unless="${p.images.length==0}">
+					<td><img style="max-height:100px" th:src="@{/images/}+${p.images[0]}"></td>
+				</span>
+				
+				
+				<td>
+					<a th:href="@{/home/maintenance/editProduct(id=${p.productId}, product=${p.productName} )}"><img th:src="@{/images/edit.png}"></a>
+					<a th:href="@{/home/maintenance/deleteProduct(id=${p.productId}, product=${p.productName} )}"><img th:src="@{/images/delete.png}"></a>
+				</td>
+	
+			</tr>
+		</table>
+		</span>
+		
+	</div>
+</body>
+</html>

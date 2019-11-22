@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title th:text="${product.productName}"></title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="../static/findProduct.css" th:href="@{/findProduct.css}" rel="stylesheet" />
+</head>
+<body>
+<nav th:replace="menuNav :: header">
+
+</nav>
+	
+<div class="container-fluid" layout:fragment="content">
+	<div class="row">
+			<div class="col-sm-4">
+				<div th:each="product: ${products}">
+				  <span th:if="${product.images.length==0}">No image</span>
+						<span th:unless="${product.images.length==0}">
+						<img style="max-height:100px" th:src="@{/images/}+${product.images[0]}">
+					</span>
+			</div>
+			</div>
+			<div class="col-sm-4">
+				<h2 th:text="${product.productName}" ></h2>
+				<h6 th:text="${product.category.categoryName}"></h6> <br>
+				<span th:text="${product.description}" ></span><br>
+				<span th:text="${product.stockUnits + ' units on stock'}"></span>
+			</div>
+			<div class="col-sm-4">
+				<div class="card" style="width:250px">
+				  <div class="card-body">
+				  		<form action="#" th:action="@{/store/shoppingCart/add}" th:object="${shoppingCartForm}" method="GET">
+				  			<div class="form-group">
+				  				<input type="hidden" th:field="${product.productId}">
+					  			<label>Quantity: </label><input th:field="*{quantity}" type="number" th:max="${product.stockUnits}" min="1">
+							</div>
+							<h6 th:text="${'Price per unit: '+ product.price}"></h6>
+							<input type="submit" value="Add to shoppingCart" class="btn btn-primary">
+				  		</form>
+				  </div>
+				</div>
+			</div>
+	</div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>
