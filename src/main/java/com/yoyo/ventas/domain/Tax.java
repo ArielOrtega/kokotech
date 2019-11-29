@@ -1,5 +1,7 @@
 package com.yoyo.ventas.domain;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 public class Tax {
 	
 	private int idTax;

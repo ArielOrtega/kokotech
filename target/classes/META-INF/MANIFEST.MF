@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: yoyo
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: Pablo
+Built-By: MariaJ
 Implementation-Vendor-Id: com.yoyo.ventas
-Build-Jdk: 1.8.0_211
+Build-Jdk: 1.8.0_181
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/yoyo
 Created-By: Maven Integration for Eclipse
